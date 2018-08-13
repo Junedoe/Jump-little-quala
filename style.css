@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #fff;
+}
+
+canvas {
+    background: linear-gradient(to bottom, #7bffe9, rgb(255, 166, 255));
+    margin: 10%;
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(38, 34, 224);
+}
