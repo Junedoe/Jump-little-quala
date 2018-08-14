@@ -1,14 +1,15 @@
 * {
     box-sizing: border-box;
 }
-body {
-    background-color: #fff;
+html body {
+    background-color: rgb(195, 252, 247);
+    /* background: linear-gradient(to bottom, #87e0d1, rgb(235, 179, 235)); */
+    display: flex;
 }
 
 canvas {
-    background: linear-gradient(to bottom, #7bffe9, rgb(255, 166, 255));
     margin: 10%;
-    display: flex;
     justify-content: center;
-    border: 1px solid rgb(38, 34, 224);
+    /* align-self: center; */
+    border: 2px solid rgb(34, 138, 224);
 }

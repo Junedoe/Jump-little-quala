@@ -6,8 +6,8 @@ var canvasWidth = ctx.canvas.width;
 var canvasHeight = ctx.canvas.height;
 
 // declarations:
-var koalaFig;
 var interval;
+var koalaFig;
 var myObstacles;
 
 // On load start event listener and start game function:
@@ -15,28 +15,34 @@ window.onload = function() {
     window.addEventListener('keydown', function(e) {
         if (e.keyCode === 38) {
             console.log(koalaFig.y);
-            koalaFig.accelerate(-0.5);
+            koalaFig.jump();
         }
     });
     window.addEventListener('keyup', function(e) {
-        koalaFig.accelerate(0.3);
+        if (e.keyCode === 38) {
+            // koalaFig.accelerate(0.3);
+        }
     });
     startGame();
 };
 
 function startGame() {
-    koalaFig = new Koala(45, 455, 5, 2, 40, ctx, canvasHeight);
+    koalaFig = new Koala(60, 455, 5, 2, 40, ctx, canvasHeight);
     // myObstacles = new Obstacles();
     interval = setInterval(updateGameArea, 20);
+    console.log(backImgUp, backImgBot);
 }
 function clearGame() {
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 }
 
-// Make Move
+// Clear Game Area / move and draw elements
 function updateGameArea() {
     clearGame();
-    // myObstacles.update()??
+    backImgUp.move();
+    backImgBot.move();
     koalaFig.newPos();
+    backImgUp.draw();
+    backImgBot.draw();
     koalaFig.draw();
 }
