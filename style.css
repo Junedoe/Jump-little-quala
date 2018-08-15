@@ -3,13 +3,18 @@
 }
 html body {
     background-color: rgb(195, 252, 247);
-    /* background: linear-gradient(to bottom, #87e0d1, rgb(235, 179, 235)); */
+    /* background: linear-gradient(to bottom, #87e0d1, rgb(235, 179, 235)); jj*/
     display: flex;
 }
-
-canvas {
-    margin: 10%;
-    justify-content: center;
-    /* align-self: center; */
+.wrapper {
+    display: block;
+}
+.heading {
+    margin: 20%;
+    background-image: url('/img/heading.png');
+    height: 400px;
+    width: 100%;
+}
+#canvas {
     border: 2px solid rgb(34, 138, 224);
 }
