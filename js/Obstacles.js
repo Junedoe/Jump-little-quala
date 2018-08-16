@@ -14,8 +14,8 @@ function Obstacles(randomBob, canvas, ctx) {
             this.img.src = 'img/obstacle_02.png';
             break;
         case 'bob3':
-            this.height = 93;
-            this.width = 51;
+            this.height = 120;
+            this.width = 53;
             this.img.src = 'img/obstacle_03.png';
             break;
         case 'bob4':

@@ -53,7 +53,7 @@ Koala.prototype.jump = function(n) {
 
 // On collision with obstacles:
 Koala.prototype.collide = function(obstacle) {
-    var myleft = this.x;
+    var myleft = this.x - 20;
     var myright = this.x + this.width - 30;
     var mytop = this.y;
     var mybottom = this.y + this.height - 25;

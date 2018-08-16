@@ -135,7 +135,7 @@ function randomBobCreator() {
 function randomSushiCreator() {
     randomNumber = Math.floor(Math.random() * sushiArrayNames.length);
     randomSushi = sushiArrayNames[randomNumber];
-    randomHeight = Math.floor(Math.random() * 400 + 1);
+    randomHeight = Math.floor(Math.random() * 350 + 100);
     y = randomHeight;
     sushiArray.push(new Sushi(randomSushi, canvas, ctx, y));
 }
@@ -162,7 +162,7 @@ function printScore() {
 function printBonusScore() {
     ctx.fillStyle = 'white';
     ctx.font = '40px Lato';
-    ctx.fillText('Points: ' + bonusPoints, 820, 50);
+    ctx.fillText('Points: ' + bonusPoints, 800, 50);
 }
 // Restart game:
 function restart() {
