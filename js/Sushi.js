@@ -5,28 +5,28 @@ function Sushi(randomSushi, canvas, ctx, y) {
     this.img = new Image();
     switch (randomSushi) {
         case 'sushi1':
-            this.height = 91;
-            this.width = 100;
+            this.height = 64;
+            this.width = 70;
             this.img.src = 'img/sushi_01.png';
             break;
         case 'sushi2':
-            this.height = 59;
-            this.width = 100;
+            this.height = 41;
+            this.width = 70;
             this.img.src = 'img/sushi_02.png';
             break;
         case 'sushi3':
-            this.height = 61;
-            this.width = 100;
+            this.height = 43;
+            this.width = 70;
             this.img.src = 'img/sushi_03.png';
             break;
         case 'sushi4':
-            this.height = 74;
-            this.width = 100;
+            this.height = 52;
+            this.width = 70;
             this.img.src = 'img/sushi_04.png';
             break;
         case 'sushi5':
-            this.height = 54;
-            this.width = 100;
+            this.height = 38;
+            this.width = 70;
             this.img.src = 'img/sushi_05.png';
             break;
     }
@@ -35,11 +35,11 @@ function Sushi(randomSushi, canvas, ctx, y) {
     this.speedX = 0;
     this.speedY = 0;
 }
-// draw Sushi
+// Draw Sushi
 Sushi.prototype.draw = function() {
     this.ctx.drawImage(this.img, this.x, this.y);
 };
-// appear from right to left: (x--)
+// Appear from right <-- left:
 Sushi.prototype.move = function() {
     this.x--;
 };

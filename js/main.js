@@ -139,6 +139,9 @@ function randomSushiCreator() {
     y = randomHeight;
     sushiArray.push(new Sushi(randomSushi, canvas, ctx, y));
 }
+/*
+// Game over / Print score / print Bonus score / and restart game:
+*/
 
 function gameover() {
     clearInterval(interval);
@@ -149,26 +152,19 @@ function gameover() {
     };
     interval = undefined;
 }
-// score function:
+// Score
 function printScore() {
     ctx.fillStyle = 'white';
     ctx.font = '40px Lato';
     ctx.fillText('Score: ' + score, 20, 50);
 }
-// score for Bonus:
+// Score for Bonus:
 function printBonusScore() {
     ctx.fillStyle = 'white';
     ctx.font = '40px Lato';
     ctx.fillText('Points: ' + bonusPoints, 820, 50);
 }
-
-// restart game:
-// function restart() {
-//     if (clearInterval(interval)) frames = 0;
-//     score = 0;
-//     start();
-// }
-
+// Restart game:
 function restart() {
     if (clearInterval(interval)) frames = 0;
     score = 0;

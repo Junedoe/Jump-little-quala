@@ -14,22 +14,22 @@ function Koala(x, y, width, height, ctx) {
     this.height = height;
 
     // Parameter to adapt:
-    this.gravity = 0.1; // The bigger, the faster will be the fall
+    this.gravity = 0.1; // The bigger, the faster the fall will be
     this.bounce = 0.6; // The bigger, the more it will bounce. 0 => nothing, 1 => bounce for ever
     this.friction = 0.07; // The bigger, the smoother the fall will be
     this.maxJumps = 6;
 }
-// draw Koala figure:
+// Draw Koala figure:
 Koala.prototype.draw = function() {
     this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
 };
-// move Koala figure:
+// Move Koala figure:
 Koala.prototype.newPos = function() {
     this.speedY += this.gravity - this.friction * this.speedY;
     this.x += this.speedX;
     this.y += this.speedY;
 
-    // Reach the top / Set limit:
+    // Reach the top / set limit:
     if (this.y < this.height) {
         this.y = this.height;
         this.speedY = 0;
@@ -41,7 +41,8 @@ Koala.prototype.newPos = function() {
         this.speedY *= -this.bounce;
     }
 };
-// set Koala jumps:
+
+// Set Koala jumps:
 Koala.prototype.jump = function(n) {
     if (this.numberOfJumps < this.maxJumps) {
         this.numberOfJumps++;
@@ -49,7 +50,8 @@ Koala.prototype.jump = function(n) {
     }
     soundJump.play();
 };
-// on collision with obstacles:
+
+// On collision with obstacles:
 Koala.prototype.collide = function(obstacle) {
     var myleft = this.x;
     var myright = this.x + this.width - 30;
@@ -65,7 +67,7 @@ Koala.prototype.collide = function(obstacle) {
     }
     return crash;
 };
-// on collecting bonus:
+// On collecting bonus:
 Koala.prototype.collectBonus = function(bonus) {
     var myleft = this.x;
     var myright = this.x + this.width;
