@@ -16,8 +16,8 @@ function Koala(x, y, width, height, ctx) {
     // Parameter to adapt:
     this.gravity = 0.1; // The bigger, the faster will be the fall
     this.bounce = 0.6; // The bigger, the more it will bounce. 0 => nothing, 1 => bounce for ever
-    this.friction = 0.09; // The bigger, the smoother the fall will be
-    this.maxJumps = 4;
+    this.friction = 0.07; // The bigger, the smoother the fall will be
+    this.maxJumps = 6;
 }
 // draw Koala figure:
 Koala.prototype.draw = function() {

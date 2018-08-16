@@ -1,30 +1,35 @@
 // Set up Canvas:
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-// Width and height:
+
+/* 
+// DECLARATIONS:
+*/
+// Canvas width and height:
 var canvasWidth = ctx.canvas.width;
 var canvasHeight = ctx.canvas.height;
-
-//declarations:
 var interval;
 var koalaFig;
-var obstaclesArray = [];
+// empty Array to push random obstacle/sushi in
 var obstaclesArrayNames = ['bob1', 'bob2', 'bob3', 'bob4', 'bob5'];
-var sushiArray = [];
 var sushiArrayNames = ['sushi1', 'sushi2', 'sushi3', 'sushi4', 'sushi5'];
+var obstaclesArray = [];
+var sushiArray = [];
+// All counters at zero state:
 var frames = 0;
 var score = 0;
 var bonusPoints = 0;
-//images:
+var interval = 0;
+// Images:
 var gameOverImg;
 var startScreenImg;
 // Sounds:
+var soundBackground;
 var soundCrash;
 var soundJump;
 var soundEat;
-var soundBackground;
 
-// On load start event listener and start game function:
+// Onload start event listener and start game function:
 window.onload = function() {
     window.addEventListener('keydown', function(e) {
         if (e.keyCode === 38) {
@@ -45,33 +50,40 @@ window.onload = function() {
         startGame();
     };
 };
-// on startGame create Koala and setInterval:
+
+// On startGame create Koala, setInterval and clear game:
 function startGame() {
     koalaFig = new Koala(100, 300, 80, 80, ctx);
+    if (typeof interval === 'undefined') restart();
     interval = setInterval(updateGameArea, 1000 / 200);
 }
 function clearGame() {
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 }
 
-// Clear Game Area / move and draw elements:
+/* 
+// UPDATE GAME AREA:
+*/
+
+// Create random gap between obstacles:
 function updateGameArea() {
-    var randomGap = Math.floor(Math.random() * 300 + 200);
+    var randomGapObstacles = Math.floor(Math.random() * 300 + 200);
+    var randomGapSushi = Math.floor(Math.random() * 400 + 300);
     frames++;
     if (frames % 100 === 0) {
         score++;
     }
     //every random ms between 300 and 250 create an obstacle:
-    if (frames % randomGap === 0) {
+    if (frames % randomGapObstacles === 0) {
         console.log('=');
         randomBobCreator();
     }
-    //every 250 ms create a bonus:
-    if (frames % 250 === 0) {
+    // every 250 ms create a bonus:
+    if (frames % randomGapSushi === 0) {
         randomSushiCreator();
     }
     clearGame();
-    //MOVE
+    // MOVE
     backImgUp.move();
     backImgBot.move();
     // iterate over the random sushi of sushiArray and move/draw it:
@@ -92,6 +104,7 @@ function updateGameArea() {
     // on collecting/ eating sushi:
     for (var i = 0; i < sushiArray.length; i++) {
         if (koalaFig.collectBonus(sushiArray[i])) {
+            sushiArray.splice(i, 1);
             soundEat.play();
             bonusPoints++;
         }
@@ -110,7 +123,7 @@ function updateGameArea() {
     printScore();
     printBonusScore();
 }
-// choose random obstacles from obstaclesArrayNames and push it to obstaclesArray:
+// Choose random obstacles from obstaclesArrayNames and push it to obstaclesArray:
 function randomBobCreator() {
     randomNumber = Math.floor(Math.random() * obstaclesArrayNames.length);
     randomBob = obstaclesArrayNames[randomNumber];
@@ -118,7 +131,7 @@ function randomBobCreator() {
     obstaclesArray.push(new Obstacles(randomBob, canvas, ctx));
 }
 
-// choose random bonus sushi from sushiArrayNames and push it to sushiArray:
+// Choose random bonus sushi from sushiArrayNames and push it to sushiArray:
 function randomSushiCreator() {
     randomNumber = Math.floor(Math.random() * sushiArrayNames.length);
     randomSushi = sushiArrayNames[randomNumber];
@@ -127,7 +140,6 @@ function randomSushiCreator() {
     sushiArray.push(new Sushi(randomSushi, canvas, ctx, y));
 }
 
-// gameover function:
 function gameover() {
     clearInterval(interval);
     gameOverImg = new Image();
@@ -135,6 +147,7 @@ function gameover() {
     gameOverImg.onload = function() {
         ctx.drawImage(gameOverImg, 0, 0, 1000, 500);
     };
+    interval = undefined;
 }
 // score function:
 function printScore() {
@@ -146,12 +159,18 @@ function printScore() {
 function printBonusScore() {
     ctx.fillStyle = 'white';
     ctx.font = '40px Lato';
-    ctx.fillText('Points: ' + bonusPoints, 840, 50);
+    ctx.fillText('Points: ' + bonusPoints, 820, 50);
 }
 
 // restart game:
+// function restart() {
+//     if (clearInterval(interval)) frames = 0;
+//     score = 0;
+//     start();
+// }
+
 function restart() {
     if (clearInterval(interval)) frames = 0;
     score = 0;
-    start();
+    obstaclesArray = [];
 }
