@@ -56,37 +56,32 @@ function clearGame() {
 
 // Clear Game Area / move and draw elements:
 function updateGameArea() {
+    var randomGap = Math.floor(Math.random() * 300 + 200);
     frames++;
     if (frames % 100 === 0) {
         score++;
     }
-    clearGame();
-    backImgUp.move();
-    backImgBot.move();
-    koalaFig.newPos();
-    backImgUp.draw();
-    backImgBot.draw();
-    koalaFig.draw();
-    printScore();
-    printBonusScore();
-    // every 200 ms create an obstacle:
-    if (frames % 200 === 0) {
+    //every random ms between 300 and 250 create an obstacle:
+    if (frames % randomGap === 0) {
+        console.log('=');
         randomBobCreator();
     }
-    // every 250 ms create a bonus:
+    //every 250 ms create a bonus:
     if (frames % 250 === 0) {
         randomSushiCreator();
     }
-    // iterate over the random obstacle of obstacleArray and move/draw it:
-    for (var i = 0; i < obstaclesArray.length; i++) {
-        obstaclesArray[i].move();
-        obstaclesArray[i].draw();
-    }
+    clearGame();
+    //MOVE
+    backImgUp.move();
+    backImgBot.move();
     // iterate over the random sushi of sushiArray and move/draw it:
     for (var i = 0; i < sushiArray.length; i++) {
         sushiArray[i].move();
-        sushiArray[i].draw();
     }
+    for (var i = 0; i < obstaclesArray.length; i++) {
+        obstaclesArray[i].move();
+    }
+    koalaFig.newPos();
     // on collision:
     for (var i = 0; i < obstaclesArray.length; i++) {
         if (koalaFig.collide(obstaclesArray[i])) {
@@ -101,11 +96,25 @@ function updateGameArea() {
             bonusPoints++;
         }
     }
+    //DRAW
+    backImgUp.draw();
+    backImgBot.draw();
+    // iterate over the random obstacle of obstacleArray and move/draw it:
+    for (var i = 0; i < obstaclesArray.length; i++) {
+        obstaclesArray[i].draw();
+    }
+    for (var i = 0; i < sushiArray.length; i++) {
+        sushiArray[i].draw();
+    }
+    koalaFig.draw();
+    printScore();
+    printBonusScore();
 }
 // choose random obstacles from obstaclesArrayNames and push it to obstaclesArray:
 function randomBobCreator() {
     randomNumber = Math.floor(Math.random() * obstaclesArrayNames.length);
     randomBob = obstaclesArrayNames[randomNumber];
+
     obstaclesArray.push(new Obstacles(randomBob, canvas, ctx));
 }
 
