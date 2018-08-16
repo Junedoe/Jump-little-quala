@@ -1,20 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:700');
 * {
+    margin: 0;
     box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
 }
-html body {
-    background-color: rgb(195, 252, 247);
-    /* background: linear-gradient(to bottom, #87e0d1, rgb(235, 179, 235)); jj*/
-    display: flex;
+.game-board {
+    background-image: url('img/start-screen.jpg');
+    width: 1270px;
+    height: 665px;
 }
-.wrapper {
-    display: block;
+#start-button {
+    padding-bottom: 7px;
+    font-size: 25pt;
+    color: rgb(40, 184, 152);
+    margin-left: 45%;
+    width: 150px;
+    height: 60px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(45, 224, 186);
+    border-radius: 5px;
+    box-shadow: 0;
 }
-.heading {
-    margin: 20%;
-    background-image: url('/img/heading.png');
-    height: 400px;
-    width: 100%;
-}
+
 #canvas {
-    border: 2px solid rgb(34, 138, 224);
+    margin-top: 86px;
+    margin-left: 140px;
+    /* border: 2px solid rgb(36, 117, 184); */
 }

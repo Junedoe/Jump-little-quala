@@ -1,3 +1,4 @@
+// Image constructor:
 function backImage(imgSrc, x, speed) {
     this.x = x;
     this.speed = speed;
@@ -22,5 +23,3 @@ function backImage(imgSrc, x, speed) {
 var backImgUp = new backImage('img/backImgUp.png', 0, -0.5);
 // Background image upper part:
 var backImgBot = new backImage('img/backImgBott.png', 0, -1);
-// game over
-var imgGameOver = new backImage('img/gameover.png', 0, 0);
