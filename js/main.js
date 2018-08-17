@@ -3,7 +3,7 @@ var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 /* 
-// 2.) DECLARATIONS
+// 2.)  DECLARATIONS
 */
 // Canvas width and height:
 var canvasWidth = ctx.canvas.width;
