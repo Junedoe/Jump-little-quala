@@ -20,8 +20,3 @@ function backImage(imgSrc, x, speed) {
         }
     };
 }
-
-// Background image upper part:
-var backImgUp = new backImage('backimgup.png', 0, -0.5);
-// Background image upper part:
-var backImgBot = new backImage('backimgbott.png', 0, -1);
