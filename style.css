@@ -6,7 +6,7 @@
 }
 /* Start screen */
 .game-board {
-    background-image: url('start-screen.jpg');
+    background-image: url('images/start-screen.jpg');
     width: 1270px;
     height: 665px;
 }

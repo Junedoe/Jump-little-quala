@@ -9,27 +9,27 @@ function Obstacles(randomBob, canvas, ctx) {
         case 'bob1':
             this.height = 93;
             this.width = 63;
-            this.img.src = 'obstacle_01.png';
+            this.img.src = 'images/obstacle_01.png';
             break;
         case 'bob2':
             this.height = 68;
             this.width = 46;
-            this.img.src = 'obstacle_02.png';
+            this.img.src = 'images/obstacle_02.png';
             break;
         case 'bob3':
             this.height = 93;
             this.width = 51;
-            this.img.src = 'obstacle_03.png';
+            this.img.src = 'images/obstacle_03.png';
             break;
         case 'bob4':
             this.height = 80;
             this.width = 47;
-            this.img.src = 'obstacle_04.png';
+            this.img.src = 'images/obstacle_04.png';
             break;
         case 'bob5':
             this.height = 105;
             this.width = 47;
-            this.img.src = 'obstacle_05.png';
+            this.img.src = 'images/obstacle_05.png';
             break;
     }
     this.x = this.canvas.width;

@@ -1,13 +1,13 @@
 /*
 // KOALA CONSTRUCTOR
 */
-var koalaImgSrc = 'koala_icon.png';
+var koalaImgSrc = 'images/koala_icon.png';
 imgFloor = new Image();
 imgJump = new Image();
 imgCrash = new Image();
 imgFloor.src = koalaImgSrc;
-imgJump.src = 'koala-icon_jump.png';
-imgCrash.src = 'koala-icon_crash';
+imgJump.src = 'images/koala-icon_jump.png';
+imgCrash.src = 'images/koala-icon_crash';
 
 function Koala(x, y, width, height, img, ctx) {
     this.x = x;

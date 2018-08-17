@@ -30,9 +30,9 @@ var soundJump;
 var soundEat;
 var soundGameOver;
 // Background image upper part:
-var backImgUp = new backImage('backimgup.png', 0, -0.5);
+var backImgUp = new backImage('images/backimgup.png', 0, -0.5);
 // Background image upper part:
-var backImgBot = new backImage('backimgbott.png', 0, -1);
+var backImgBot = new backImage('images/backimgbott.png', 0, -1);
 
 /*
 // 3.) ONLOAD EVENTS
@@ -53,14 +53,29 @@ window.onload = function() {
 
     document.getElementById('start-button').onclick = function() {
         if (!isGameStarted) {
-            soundBackground = new Sound('sound/background.mp3');
-            soundCrash = new Sound('sound/collision.mp3');
-            soundJump = new Sound('sound/jump.mp3');
-            soundEat = new Sound('sound/eat.mp3');
-            soundGameOver = new Sound('sound/gameover.mp3');
+            soundBackground = new Sound('Sound/background.mp3');
+            soundCrash = new Sound('Sound/collision.mp3');
+            soundJump = new Sound('Sound/jump.mp3');
+            soundEat = new Sound('Sound/eat.mp3');
+            soundGameOver = new Sound('Sound/gameover.mp3');
             isGameStarted = true;
             startGame();
         }
+        canvas.addEventListener(
+            'touchstart',
+            function() {
+                koalaFig.img = imgJump;
+                koalaFig.jump();
+            },
+            false
+        );
+        canvas.addEventListener(
+            'touchend',
+            function() {
+                koalaFig.img = imgFloor;
+            },
+            false
+        );
     };
 };
 
@@ -163,7 +178,7 @@ function gameover() {
     clearInterval(interval);
     soundCrash.play();
     gameOverImg = new Image();
-    gameOverImg.src = 'gameover.jpg';
+    gameOverImg.src = 'images/gameover.jpg';
     gameOverImg.onload = function() {
         ctx.drawImage(gameOverImg, 0, 0, 1000, 500);
         printScore();
