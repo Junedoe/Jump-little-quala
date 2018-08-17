@@ -1,3 +1,6 @@
+/*
+// OBSTACLES CONSTRUCTOR
+*/
 function Obstacles(randomBob, canvas, ctx) {
     this.canvas = canvas;
     this.ctx = ctx;
@@ -14,8 +17,8 @@ function Obstacles(randomBob, canvas, ctx) {
             this.img.src = 'img/obstacle_02.png';
             break;
         case 'bob3':
-            this.height = 120;
-            this.width = 53;
+            this.height = 93;
+            this.width = 51;
             this.img.src = 'img/obstacle_03.png';
             break;
         case 'bob4':
@@ -34,11 +37,11 @@ function Obstacles(randomBob, canvas, ctx) {
     this.speedX = 0;
     this.speedY = 0;
 }
-// appear Randomly:
+// Appear Randomly:
 Obstacles.prototype.draw = function() {
     this.ctx.drawImage(this.img, this.x, this.y);
 };
-
+// Move:
 Obstacles.prototype.move = function() {
     this.x--;
 };

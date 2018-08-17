@@ -1,19 +1,23 @@
+/*
+// KOALA CONSTRUCTOR
+*/
 var koalaImgSrc = 'img/koala_icon.png';
+imgFloor = new Image();
+imgJump = new Image();
+imgFloor.src = koalaImgSrc;
+imgJump.src = 'img/koala-icon_jump.png';
 
-// Koala Constructor
-function Koala(x, y, width, height, ctx) {
+function Koala(x, y, width, height, img, ctx) {
     this.x = x;
     this.y = y;
-    this.img = new Image();
-    this.img.src = koalaImgSrc;
     this.ctx = ctx;
     this.speedX = 0;
     this.speedY = 0;
     this.numberOfJumps = 0;
     this.width = width;
     this.height = height;
-
-    // Parameter to adapt:
+    this.img = img;
+    // Parameters to adapt:
     this.gravity = 0.1; // The bigger, the faster the fall will be
     this.bounce = 0.6; // The bigger, the more it will bounce. 0 => nothing, 1 => bounce for ever
     this.friction = 0.07; // The bigger, the smoother the fall will be

@@ -1,4 +1,6 @@
-// Shushi bonus constructor
+/*
+// SUSHI CONSTRUCTOR
+*/
 function Sushi(randomSushi, canvas, ctx, y) {
     this.canvas = canvas;
     this.ctx = ctx;

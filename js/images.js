@@ -1,4 +1,6 @@
-// Image constructor:
+/*
+// IMAGE CONSTRUCTOR
+*/
 function backImage(imgSrc, x, speed) {
     this.x = x;
     this.speed = speed;

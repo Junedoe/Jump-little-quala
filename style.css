@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
 }
+/* Start screen */
 .game-board {
     background-image: url('img/start-screen.jpg');
     width: 1270px;
@@ -21,7 +22,6 @@
     border-radius: 5px;
     box-shadow: 0;
 }
-
 #canvas {
     margin-top: 86px;
     margin-left: 140px;

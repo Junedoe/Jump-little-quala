@@ -1,4 +1,6 @@
-// Sound constructor:
+/*
+// SOUND CONSTRUCTOR
+*/
 function Sound(src) {
     this.Sound = document.createElement('audio');
     this.Sound.src = src;

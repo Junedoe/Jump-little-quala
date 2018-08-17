@@ -1,9 +1,9 @@
-// Set up Canvas:
+// 1.) CANVAS SETUP
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
 /* 
-// DECLARATIONS:
+// 2.) DECLARATIONS
 */
 // Canvas width and height:
 var canvasWidth = ctx.canvas.width;
@@ -17,9 +17,9 @@ var obstaclesArray = [];
 var sushiArray = [];
 // All counters at zero state:
 var frames = 0;
-var score = 0;
 var bonusPoints = 0;
 var interval = 0;
+var isGameStarted = false;
 // Images:
 var gameOverImg;
 var startScreenImg;
@@ -28,33 +28,43 @@ var soundBackground;
 var soundCrash;
 var soundJump;
 var soundEat;
+var soundGameOver;
 
+/*
+// 3.) ONLOAD EVENTS
+*/
 // Onload start event listener and start game function:
 window.onload = function() {
     window.addEventListener('keydown', function(e) {
         if (e.keyCode === 38) {
+            koalaFig.img = imgJump;
             koalaFig.jump();
         }
     });
     window.addEventListener('keyup', function(e) {
         if (e.keyCode === 38) {
+            koalaFig.img = imgFloor;
         }
     });
 
     document.getElementById('start-button').onclick = function() {
-        soundBackground = new Sound('sound/background.mp3');
-        soundCrash = new Sound('sound/crash.mp3');
-        soundJump = new Sound('sound/jump.mp3');
-        soundEat = new Sound('sound/eat.mp3');
-        soundBackground.play();
-        startGame();
+        if (!isGameStarted) {
+            soundBackground = new Sound('sound/background.mp3');
+            soundCrash = new Sound('sound/collision.mp3');
+            soundJump = new Sound('sound/jump.mp3');
+            soundEat = new Sound('sound/eat.mp3');
+            soundGameOver = new Sound('sound/gameover.mp3');
+            isGameStarted = true;
+            startGame();
+        }
     };
 };
 
 // On startGame create Koala, setInterval and clear game:
 function startGame() {
-    koalaFig = new Koala(100, 300, 80, 80, ctx);
+    koalaFig = new Koala(100, 300, 100, 100, imgFloor, ctx);
     if (typeof interval === 'undefined') restart();
+    soundBackground.play();
     interval = setInterval(updateGameArea, 1000 / 200);
 }
 function clearGame() {
@@ -62,17 +72,13 @@ function clearGame() {
 }
 
 /* 
-// UPDATE GAME AREA:
+// 4.) UPDATE GAME AREA
 */
-
 // Create random gap between obstacles:
 function updateGameArea() {
     var randomGapObstacles = Math.floor(Math.random() * 300 + 200);
     var randomGapSushi = Math.floor(Math.random() * 400 + 300);
     frames++;
-    if (frames % 100 === 0) {
-        score++;
-    }
     //every random ms between 300 and 250 create an obstacle:
     if (frames % randomGapObstacles === 0) {
         console.log('=');
@@ -97,7 +103,6 @@ function updateGameArea() {
     // on collision:
     for (var i = 0; i < obstaclesArray.length; i++) {
         if (koalaFig.collide(obstaclesArray[i])) {
-            soundCrash.play();
             gameover();
         }
     }
@@ -120,8 +125,8 @@ function updateGameArea() {
         sushiArray[i].draw();
     }
     koalaFig.draw();
+    printJumps();
     printScore();
-    printBonusScore();
 }
 // Choose random obstacles from obstaclesArrayNames and push it to obstaclesArray:
 function randomBobCreator() {
@@ -135,38 +140,57 @@ function randomBobCreator() {
 function randomSushiCreator() {
     randomNumber = Math.floor(Math.random() * sushiArrayNames.length);
     randomSushi = sushiArrayNames[randomNumber];
-    randomHeight = Math.floor(Math.random() * 350 + 100);
-    y = randomHeight;
-    sushiArray.push(new Sushi(randomSushi, canvas, ctx, y));
-}
-/*
-// Game over / Print score / print Bonus score / and restart game:
-*/
+    randomHeight = Math.floor(Math.random() * 200 + 100);
 
+    sushiArray.push(new Sushi(randomSushi, canvas, ctx, randomHeight));
+}
+// get the biggest height of an obstacle:
+// function getHeightObstacle() {
+//     for (var i = 0; i < obstaclesArray.length; i++) {
+//         if (obstaclesArray[i].y > obHeight) obHeight = obstaclesArray[i].height;
+//     }
+//     return obHeight;
+// }
+
+/*
+// 5.) GAME OVER / PRINT SCORE / PRINT JUMPS/ RESTART GAME
+*/
 function gameover() {
     clearInterval(interval);
+    soundCrash.play();
     gameOverImg = new Image();
     gameOverImg.src = 'img/gameover.jpg';
     gameOverImg.onload = function() {
         ctx.drawImage(gameOverImg, 0, 0, 1000, 500);
+        printScore();
+        printJumps();
     };
+    setTimeout(function() {
+        soundGameOver.play();
+    }, 2000);
+    isGameStarted = false;
+    soundJump.stop();
+    soundEat.stop();
+    soundBackground.stop();
     interval = undefined;
 }
-// Score
-function printScore() {
-    ctx.fillStyle = 'white';
-    ctx.font = '40px Lato';
-    ctx.fillText('Score: ' + score, 20, 50);
-}
+
 // Score for Bonus:
-function printBonusScore() {
-    ctx.fillStyle = 'white';
+function printScore() {
+    ctx.fillStyle = '#1BA38E';
     ctx.font = '40px Lato';
-    ctx.fillText('Points: ' + bonusPoints, 800, 50);
+    ctx.fillText('Points: ' + bonusPoints, 20, 50);
+}
+// Jumps counter:
+function printJumps() {
+    ctx.fillStyle = '#1BA38E';
+    ctx.font = '40px Lato';
+    ctx.fillText('Jumps: ' + koalaFig.numberOfJumps, 800, 50);
 }
 // Restart game:
 function restart() {
     if (clearInterval(interval)) frames = 0;
-    score = 0;
+    bonusPoints = 0;
     obstaclesArray = [];
+    sushiArray = [];
 }
