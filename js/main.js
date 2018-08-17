@@ -159,7 +159,7 @@ function gameover() {
     clearInterval(interval);
     soundCrash.play();
     gameOverImg = new Image();
-    gameOverImg.src = 'img/gameover.jpg';
+    gameOverImg.src = 'gameover.jpg';
     gameOverImg.onload = function() {
         ctx.drawImage(gameOverImg, 0, 0, 1000, 500);
         printScore();
